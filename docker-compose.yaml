@@ -1,0 +1,24 @@
+# docker compose up -d --build --force-recreate
+version: '3.8'
+name: max
+
+services:
+
+  db-store:
+    container_name: max-db-store
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=max
+      - POSTGRES_PASSWORD=max
+      - POSTGRES_DB=max
+    volumes:
+      - $VOLUME/postgres/max/data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - private-network
+
+networks:
+  private-network:
+    driver: bridge
