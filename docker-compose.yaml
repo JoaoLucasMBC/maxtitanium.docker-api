@@ -4,8 +4,8 @@ name: max
 
 services:
 
-  db-store:
-    container_name: max-db-store
+  db-max:
+    container_name: max-db-max
     image: postgres:latest
     ports:
       - 5432:5432
@@ -18,6 +18,25 @@ services:
     restart: always
     networks:
       - private-network
+  
+  account:
+    build:
+      context: ../maxtitanium.account-resource
+      dockerfile: Dockerfile
+    image: max-account:latest
+    environment:
+      - spring.datasource.url=jdbc:postgresql://max-db-max:5432/max
+      - spring.datasource.username=max
+      - spring.datasource.password=max
+    deploy:
+      mode: replicated
+      replicas: 1
+    restart: always
+    networks:
+      - private-network
+    depends_on:
+      - db-max
+
 
 networks:
   private-network:
