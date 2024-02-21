@@ -24,6 +24,8 @@ services:
       context: ../maxtitanium.account-resource
       dockerfile: Dockerfile
     image: max-account:latest
+    ports:
+      - 8080:8080
     environment:
       - spring.datasource.url=jdbc:postgresql://max-db-max:5432/max
       - spring.datasource.username=max
