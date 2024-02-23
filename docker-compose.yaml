@@ -35,7 +35,7 @@ services:
     networks:
       - private-network
 
-    account:
+  account:
     build:
       context: ../maxtitanium.account-resource
       dockerfile: Dockerfile
