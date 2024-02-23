@@ -19,10 +19,27 @@ services:
     networks:
       - private-network
   
-  account:
+  discovery:
+    build:
+      context: ../maxtitanium.discovery
+      dockerfile: Dockerfile
+    container_name: max-discovery
+    image: max-discovery:latest
+    ports:
+      - 8671:8671
+    environment:
+      - spring.datasource.url=jdbc:postgresql://max-db-max:5432/max
+      - spring.datasource.username=max
+      - spring.datasource.password=max
+    restart: always
+    networks:
+      - private-network
+
+    account:
     build:
       context: ../maxtitanium.account-resource
       dockerfile: Dockerfile
+    container_name: max-account
     image: max-account:latest
     ports:
       - 8080:8080
