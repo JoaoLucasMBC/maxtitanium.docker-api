@@ -43,7 +43,7 @@ services:
       - spring.datasource.url=jdbc:postgresql://max-db-max:5432/max
       - spring.datasource.username=max
       - spring.datasource.password=max
-      - eureka.client.service-url.defaultZone=http://max-discovery:8671/eureka
+      - eureka.client.service-url.defaultZone=http://max-discovery:8761/eureka
     deploy:
       mode: replicated
       replicas: 1
