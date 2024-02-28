@@ -55,6 +55,7 @@ services:
       - private-network
     depends_on:
       - db-max
+      - discovery
 
 
 networks:
