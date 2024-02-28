@@ -53,6 +53,26 @@ services:
     depends_on:
       - db-max
       - discovery
+    
+  auth:
+    build:
+      context: ../maxtitanium.auth-resource
+      dockerfile: Dockerfile
+    container_name: max-auth
+    image: max-auth:latest
+    ports:
+      - 8081:8080
+    environment:
+      - eureka.client.service-url.defaultZone=http://max-discovery:8671/eureka
+    deploy:
+      mode: replicated
+      replicas: 1
+    restart: always
+    networks:
+      - private-network
+    depends_on:
+      - discovery
+      - account
 
 
 networks:
