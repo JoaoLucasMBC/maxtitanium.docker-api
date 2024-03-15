@@ -29,19 +29,19 @@ services:
     networks:
       - private-network
 
-#  grafana:
-#    container_name: max-grafana
-#    image: grafana/grafana-enterprise
-#    ports:
-#      - 3000:3000
-#    environment:
-#      - GF_SECURITY_ADMIN_PASSWORD=admin
-#    volumes:
-#      - $VOLUME/grafana:/var/lib/grafana
-#      - $VOLUME/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources      
-#    restart: always
-#    networks:
-#      - private-network
+  grafana:
+    container_name: max-grafana
+    image: grafana/grafana-enterprise
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - $VOLUME/grafana:/var/lib/grafana
+      - $VOLUME/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources      
+    restart: always
+    networks:
+      - private-network
   
   discovery:
     build:
