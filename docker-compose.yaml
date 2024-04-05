@@ -125,6 +125,28 @@ services:
     depends_on:
       - discovery
       - account
+  
+  product:
+    build:
+      context: ../maxtitanium.product-resource
+      dockerfile: Dockerfile
+    container_name: max-product
+    image: max-product:latest
+    environment:
+      - spring.datasource.url=jdbc:postgresql://max-db-max:5432/max
+      - spring.datasource.username=max
+      - spring.datasource.password=max
+      - eureka.client.service-url.defaultZone=http://max-discovery:8761/eureka
+    deploy:
+      mode: replicated
+      replicas: 1
+    restart: always
+    networks:
+      - private-network
+    depends_on:
+      - db-max
+      - discovery
+      - redis
 
 
 networks:
